@@ -1,0 +1,26 @@
+# pip install gensim scipy
+import gensim.downloader as api
+from scipy.spatial.distance import cosine
+
+print("Loading Word2Vec model...")
+m = api.load("word2vec-google-news-300")
+print("Model loaded successfully.\n")
+
+print("First 10 dimensions of 'king' vector:")
+print(m['king'][:10], "\n")
+
+print("Top 10 words most similar to 'king':")
+for w, s in m.most_similar('king'):
+    print(f"{w}: {s:.4f}")
+
+for label, pos, neg in [
+    ("\nAnalogy - 'king' - 'man' + 'woman' ≈ ?", ['king','woman'], ['man']),
+    ("\nAnalogy - 'paris' + 'italy' - 'france' ≈ ?", ['paris','italy'], ['france']),
+    ("\nAnalogy - 'walking' + 'swimming' - 'walk' ≈ ?", ['walking','swimming'], ['walk']),
+]:
+    print(label)
+    results = m.most_similar(positive=pos, negative=neg, topn=1 if 'man' in neg else 10)
+    for w, s in results:
+        print(f"{w}: {s:.4f}")
+
+print(f"\nCosine similarity between 'king' and 'queen': {1 - cosine(m['king'], m['queen']):.4f}")
