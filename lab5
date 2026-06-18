@@ -1,0 +1,19 @@
+# pip install gensim
+import gensim.downloader as api
+import random
+
+m = api.load("glove-wiki-gigaword-100")
+
+def create_paragraph(seed):
+    similar = [w for w, _ in m.most_similar(seed, topn=10)] if seed in m else []
+    if not similar:
+        return f"No similar words found for '{seed}'."
+    random.shuffle(similar)
+    s = similar[:5]
+    return (f"In a world defined by {seed}, "
+            f"people found themselves surrounded by concepts like {', '.join(s[:-1])}, and {s[-1]}. "
+            f"These ideas shaped the way they thought, acted, and dreamed. "
+            f"Every step forward in their journey reflected the essence of '{seed}', "
+            f"bringing them closer to understanding the true meaning of {s[0]}.")
+
+print(create_paragraph("freedom"))
