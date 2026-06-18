@@ -1,0 +1,53 @@
+similar_words = {
+    "natural": ["environmental"],
+    "disaster": ["catastrophe"],
+    "essay": ["article"],
+    "education": ["learning"],
+    "technology": ["innovation"],
+    "artificial": ["synthetic"],
+    "intelligence": ["wisdom"],
+    "student": ["learner"],
+    "students": ["learners"],
+    "teacher": ["educator"],
+    "teachers": ["educators"],
+    "science": ["research"],
+    "health": ["wellness"],
+    "environment": ["ecosystem"],
+    "pollution": ["contamination"],
+    "energy": ["power"],
+    "internet": ["web"],
+    "security": ["protection"],
+    "network": ["system"],
+    "data": ["information"],
+    "software": ["application"],
+    "computer": ["machine"],
+    "cloud": ["remote"],
+    "business": ["enterprise"],
+    "agriculture": ["farming"],
+    "smart": ["intelligent"],
+    "development": ["advancement"]
+}
+prompt = input("Enter a prompt: ")
+enriched_prompt = prompt
+
+for word, synonyms in similar_words.items():
+    enriched_prompt = enriched_prompt.replace(word, synonyms[0])
+
+
+def genai_response(text):
+    return "AI Response: This explains " + text + " in a detailed and meaningful way."
+
+
+original_output = genai_response(prompt)
+enriched_output = genai_response(enriched_prompt)
+
+print("\n--- ORIGINAL PROMPT ---\n")
+print(prompt)
+
+print("\n--- ENRICHED PROMPT ---\n")
+print(enriched_prompt)
+
+print("\n--- OUTPUT COMPARISON ---\n")
+
+print("Original Output:\n", original_output)
+print("\nEnriched Output:\n", enriched_output)
