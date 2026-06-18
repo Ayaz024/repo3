@@ -1,0 +1,44 @@
+similar_words = {
+    "natural": ["environmental"],
+    "disaster": ["catastrophe"],
+    "essay": ["article"],
+    "education": ["learning"],
+    "technology": ["innovation"],
+    "artificial": ["synthetic"],
+    "intelligence": ["wisdom"],
+    "student": ["learner"],
+    "students": ["learners"],
+    "teacher": ["educator"],
+    "teachers": ["educators"],
+    "science": ["research"],
+    "health": ["wellness"],
+    "environment": ["ecosystem"],
+    "pollution": ["contamination"],
+    "energy": ["power"],
+    "internet": ["web"],
+    "security": ["protection"],
+    "network": ["system"],
+    "networks": ["systems"],
+    "data": ["information"],
+    "software": ["application"],
+    "computer": ["machine"],
+    "computers": ["machines"],
+    "cloud": ["remote"],
+    "business": ["enterprise"],
+    "agriculture": ["farming"],
+    "smart": ["intelligent"],
+    "development": ["advancement"]
+}
+
+prompt = input("Enter a prompt: ")
+
+enriched_prompt = prompt
+
+for word, synonyms in similar_words.items():
+    enriched_prompt = enriched_prompt.replace(word, synonyms[0])
+
+print("\nOriginal Prompt:\n")
+print(prompt)
+
+print("\nEnriched Prompt:\n")
+print(enriched_prompt)
